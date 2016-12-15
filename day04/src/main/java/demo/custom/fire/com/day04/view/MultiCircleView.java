@@ -201,7 +201,6 @@ public class MultiCircleView extends View {
 
         canvas.drawText("Banana", 0, -lineLength * 2 - mSmallCircleRadiu - space * 2 - textOffsetY, textPaint);
         canvas.restore();
-//        canvas.restore();
 
     }
 
