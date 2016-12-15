@@ -8,8 +8,10 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
+import android.graphics.SweepGradient;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -25,10 +27,12 @@ import demo.custom.fire.com.day04.R;
  */
 public class ShaderView extends View {
 
-    private static final int RECT_SIZE = 300;
+    private static final int RECT_SIZE = 350;
 
     private int left, top, right, bottom;
     private Paint mPaint;
+    private int screenX;
+    private int screenY;
 
 
     public ShaderView(Context context) {
@@ -42,8 +46,8 @@ public class ShaderView extends View {
         int[] screenSize = MeasureUtil.getScreenSize((Activity) context);
 
         //屏幕中心点坐标
-        int screenX = screenSize[0] / 2;
-        int screenY = screenSize[1] / 2;
+        screenX = screenSize[0] / 2;
+        screenY = screenSize[1] / 2;
 
         left = screenX - RECT_SIZE;
         top = screenY - RECT_SIZE;
@@ -60,7 +64,24 @@ public class ShaderView extends View {
 //        mPaint.setShader(new BitmapShader(bitmap, Shader.TileMode.MIRROR, Shader.TileMode.CLAMP));
 
 //        mPaint.setShader(new LinearGradient(left, top, right, bottom, Color.RED, Color.BLUE, Shader.TileMode.REPEAT));
-        mPaint.setShader(new LinearGradient(left, top, right, bottom, new int[] { Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE }, new float[] { 0, 0.3F, 0.5F, 0.7F, 0.8F }, Shader.TileMode.MIRROR));
+//        mPaint.setShader(new LinearGradient(left, top, right, bottom, new int[] { Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE }, new float[] { 0, 0.3F, 0.5F, 0.7F, 0.8F }, Shader.TileMode.MIRROR));
+
+//        mPaint.setShader(new SweepGradient(screenX,screenY,Color.RED,Color.YELLOW));
+
+        //设置矩阵变换
+        Matrix matrix = new Matrix();
+        matrix.setTranslate(500, 500);
+        matrix.setRotate(5);
+
+        // 实例化一个Shader
+        BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+
+        bitmapShader.setLocalMatrix(matrix);
+
+        mPaint.setShader(bitmapShader);
+
+//        mPaint.setShader(new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+
     }
 
     @Override
