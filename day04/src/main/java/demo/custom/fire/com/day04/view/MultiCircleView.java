@@ -168,7 +168,15 @@ public class MultiCircleView extends View {
 
         canvas.drawLine(0, -largeCircleRadiu - space, 0, -lineLength * 2 - space, mStrokePaint);
         canvas.drawCircle(0, -lineLength * 2 - mSmallCircleRadiu - space * 2, mSmallCircleRadiu, mStrokePaint);
-        canvas.drawText("Vibrators", 0, -lineLength * 2 - mSmallCircleRadiu - space * 2 - textOffsetY, textPaint);
+
+        canvas.save();
+
+        canvas.translate(0, -lineLength * 2 - mSmallCircleRadiu - space * 2);
+        canvas.rotate(-100);
+        canvas.drawText("Vibrators", 0, 0, textPaint);
+
+//        canvas.drawText("Vibrators", 0, -lineLength * 2 - mSmallCircleRadiu - space * 2 - textOffsetY, textPaint);
+        canvas.restore();
 
         canvas.restore();
 
@@ -183,9 +191,12 @@ public class MultiCircleView extends View {
 
         canvas.drawLine(0, -largeCircleRadiu - space, 0, -lineLength * 2 - space, mStrokePaint);
         canvas.drawCircle(0, -lineLength * 2 - mSmallCircleRadiu - space * 2, mSmallCircleRadiu, mStrokePaint);
-        canvas.drawText("Cucumber", 0, -lineLength * 2 - mSmallCircleRadiu - space * 2 - textOffsetY, textPaint);
 
         canvas.restore();
+
+        canvas.drawText("Cucumber", ccX, ccY + lineLength + mSmallCircleRadiu
+                + largeCircleRadiu + space * 2 + mStrokeWidth * 2, textPaint);
+
 
     }
 
@@ -199,8 +210,17 @@ public class MultiCircleView extends View {
         canvas.drawLine(0, -largeCircleRadiu - space, 0, -lineLength * 2 - space, mStrokePaint);
         canvas.drawCircle(0, -lineLength * 2 - mSmallCircleRadiu - space * 2, mSmallCircleRadiu, mStrokePaint);
 
-        canvas.drawText("Banana", 0, -lineLength * 2 - mSmallCircleRadiu - space * 2 - textOffsetY, textPaint);
+        canvas.save();
+
+        canvas.translate(0, -lineLength * 2 - mSmallCircleRadiu - space * 2);
+        canvas.rotate(100);
+        canvas.drawText("Banana", 0, 0, textPaint);
+//        canvas.drawText("Banana", 0, -lineLength * 2 - mSmallCircleRadiu - space * 2 - textOffsetY, textPaint);
+
         canvas.restore();
+
+        canvas.restore();
+
 
     }
 
@@ -215,10 +235,20 @@ public class MultiCircleView extends View {
 
         canvas.drawLine(0, -largeCircleRadiu, 0, -lineLength * 2, mStrokePaint);
         canvas.drawCircle(0, -lineLength * 3, largeCircleRadiu, mStrokePaint);
-        canvas.drawText("Tropical", 0, circleY - textOffsetY, textPaint);
+
+
+
+        canvas.save();
+        canvas.translate(0,-lineLength * 3 );
+        canvas.rotate(-30);
+        canvas.drawText("Tropical", 0, 0, textPaint);
+//        canvas.drawText("Tropical", 0, circleY - textOffsetY, textPaint);
+
+        canvas.restore();
 
         //画右上角弧形
         drawTopRightArc(canvas, circleY);
+
 
         canvas.restore();
 
@@ -248,11 +278,11 @@ public class MultiCircleView extends View {
         //将画布选择到扇形的左端
         canvas.rotate(-135F / 2F);
 
-        for (float i = 0; i< 5*33.75F;i+= 33.75F){
+        for (float i = 0; i < 5 * 33.75F; i += 33.75F) {
             canvas.save();
             canvas.rotate(i);
 
-            canvas.drawText("Fire",0,-arcTextRadiu,textPaint);
+            canvas.drawText("Fire", 0, -arcTextRadiu, textPaint);
             canvas.restore();
         }
 
@@ -274,12 +304,25 @@ public class MultiCircleView extends View {
 
         canvas.drawLine(0, -largeCircleRadiu, 0, -lineLength * 2, mStrokePaint);
         canvas.drawCircle(0, -lineLength * 3, largeCircleRadiu, mStrokePaint);
-        canvas.drawText("Apple", 0, -lineLength * 3 - textOffsetY, textPaint);
+
+        //绘制正常文字
+        canvas.save();
+        canvas.translate(0, -lineLength * 3);
+        canvas.rotate(30);
+        canvas.drawText("Apple", 0, 0, textPaint);
+//        canvas.drawText("Apple", 0, -lineLength * 3 - textOffsetY, textPaint);
+        canvas.restore();
 
         canvas.drawLine(0, -largeCircleRadiu * 4, 0, -lineLength * 5, mStrokePaint);
         canvas.drawCircle(0, -lineLength * 6, largeCircleRadiu, mStrokePaint);
-        canvas.drawText("Orange", 0, -lineLength * 6 - textOffsetY, textPaint);
 
+        canvas.save();
+        canvas.translate(0, -lineLength * 6);
+        canvas.rotate(30);
+
+        canvas.drawText("Orange", 0, 0, textPaint);
+//        canvas.drawText("Orange", 0, -lineLength * 6 - textOffsetY, textPaint);
+        canvas.restore();
         //释放画布
         canvas.restore();
 
